@@ -22,9 +22,11 @@ public class Hdfsprocess {
     private static String status;
 	
 	public static void main(String [] args) throws IOException, URISyntaxException{
-		System.out.println("Bismillah");
 		try {
 			status = args[0].toString().toLowerCase();
+			if (status == null || status.length() == 0){
+				throw new ArrayIndexOutOfBoundsException("Null");
+			}
 			init();
 
 			if (status.equals("getfilestatus")) {
@@ -66,12 +68,24 @@ public class Hdfsprocess {
 			}
 	
 			else {
-				System.out.println("Gecersiz Arguman : " + status);
+				throw new ArrayIndexOutOfBoundsException("Gecersiz");
 			}
 	
 			
 		} catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println("Eksik parametreee");
+			System.out.println("\n-----------------------------------------");
+			System.out.println("Eksik veya Gecersiz Parametre girdiniz !");
+			System.out.println("-----------------------------------------");
+			System.out.println(" Kullanilabilir parametreler : ");
+			System.out.println("   - getfilestatus {filename}");
+			System.out.println("   - mkdir {filename}");
+			System.out.println("   - createfile {filename}");
+			System.out.println("   - readfile {filename}");
+			System.out.println("   - deletefile {filename}");
+			System.out.println("   - copyfile {source} {destination}");
+			System.out.println("   - hadoop jar hdfspr.jar Hdfsprocess {arg1} {arg2}");
+			System.out.println("-----------------------------------------");
+
 		}
     }
 
