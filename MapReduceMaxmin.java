@@ -73,7 +73,7 @@ public class MapReduceMaxmin {
     // Hadoop Configration
     Configuration conf = new Configuration();
     // Job'a isim veriyoruz- Monitor ederken web arayuzden takip edecegimiz isim
-    Job job = Job.getInstance(conf, "MapReduceMaxmin example");
+    Job job = Job.getInstance(conf, "Max-Min Function");
     // icinde bulundugumuz class adi - yukarida goruntuleyebiliriz.
     job.setJarByClass(MapReduceMaxmin.class);
 

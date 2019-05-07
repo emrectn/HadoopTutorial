@@ -11,7 +11,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-public class Metin {
+public class MapReduceSum {
 
 //veri,output-key, output-value
   public static class TokenizerMapper
@@ -47,9 +47,9 @@ public class Metin {
     // Hadoop Configration
     Configuration conf = new Configuration();
     // Job'a isim veriyoruz- Monitor ederken web arayuzden takip edecegimiz isim
-    Job job = Job.getInstance(conf, "Metin example");
+    Job job = Job.getInstance(conf, "Crime Sum Function");
     // icinde bulundugumuz class adi - yukarida goruntuleyebiliriz.
-    job.setJarByClass(Metin.class);
+    job.setJarByClass(MapReduceSum.class);
 
     // uc asamadan olusur bunlar. Mapper, Combiner, Reducer
     // Yukarida belirtilen classlari asagida setediyoruz
