@@ -14,7 +14,7 @@ import org.apache.hadoop.hdfs.DistributedFileSystem;
 import org.apache.hadoop.io.IOUtils;
 
 
-public class Hdfsprocess {
+public class MapReduceHdfs {
 	private static Configuration configuration;
 	private static URI uri;
 	private static FileSystem fileSystem;
@@ -83,7 +83,7 @@ public class Hdfsprocess {
 			System.out.println("   - readfile {filename}");
 			System.out.println("   - deletefile {filename}");
 			System.out.println("   - copyfile {source} {destination}");
-			System.out.println("   - hadoop jar hdfspr.jar Hdfsprocess {arg1} {arg2}");
+			System.out.println("   - hadoop jar hdfspr.jar MapReduceHdfs {arg1} {arg2}");
 			System.out.println("-----------------------------------------");
 
 		}
