@@ -23,11 +23,15 @@ public class MapReduceAverage {
                     ) throws IOException, InterruptedException {
 
       String[] data = value.toString().split(",");
-      context.write(new Text("Average-X-Coordinate"), new IntWritable(Integer.parseInt(data[15])));
-      context.write(new Text("Average-Y-Coordinate"), new IntWritable(Integer.parseInt(data[16])));
-      int year = Integer.parseInt(data[17]);
-      if (year < 2030 && year > 1900) {
-          context.write(new Text("Average-Year"), new IntWritable(year));
+      try {
+        context.write(new Text("Average-X-Coordinate"), new IntWritable(Integer.parseInt(data[15])));
+        context.write(new Text("Average-Y-Coordinate"), new IntWritable(Integer.parseInt(data[16])));
+        int year = Integer.parseInt(data[17]);
+        if (year < 2030 && year > 1900) {
+            context.write(new Text("Average-Year"), new IntWritable(year));
+        }
+      } catch (NumberFormatException e) {
+        e.printStackTrace();
       }
     }
   }
