@@ -5,6 +5,7 @@ PS3='Choice: '
 options=("HDFS Menu" "MapReduce Tutorial" "Quit")
 hdfsoptions=("Get File Status" "Make Directory" "Create File" "Read File" "Delete File" "Copy File" "Quit")
 mapreoptions=("Average" "Max-Min" "Range" "Spread" "Sum" "Quit")
+JAR="mapreduce/mapr.jar"
 
 select opt in "${options[@]}"
 do
@@ -17,34 +18,34 @@ do
                     "Get File Status")
 						printf "File name : "
 						read -r filename
-                        echo "you chose choice $filename"
+						hadoop jar $JAR MapReduceHdfs getfilestatus $filename
                         ;;
                     "Make Directory")
 						printf "Directory Name : "
 						read -r dirname
-                        echo "you chose choice 2"
+                        hadoop jar $JAR MapReduceHdfs mkdir $dirname
                         ;;
 					"Create File")
                         printf "File name : "
 						read -r filename
-                        echo "you chose choice $filename"
+                        hadoop jar $JAR MapReduceHdfs createfile $filename
                         ;;
 					"Read File")
                         printf "File name : "
 						read -r filename
-                        echo "you chose choice $filename"
+                        hadoop jar $JAR MapReduceHdfs readfile $filename
                         ;;
 					"Delete File")
                         printf "File name : "
 						read -r filename
-                        echo "you chose choice $filename"
+                        hadoop jar $JAR MapReduceHdfs deletefile $filename
                         ;;
 					"Copy File")
 						printf "Source : "
 						read -r filesource
 						printf "Destination : "
 						read -r filedestination
-                        echo "you chose choice $filesource $filedestination"
+                        hadoop jar $JAR MapReduceHdfs copyfile $filesource $filedestination
                         ;;	
                     "Quit")
 						echo "1) HDFS Menu"
@@ -76,35 +77,53 @@ do
 						read -r input
 						printf "output : "
 						read -r output
-                        echo "you chose choice $input $output"
+						echo ""
+						hdfs dfs -rm -R $output
+                        hadoop jar $JAR MapReduceAverage $input $output
+						hdfs dfs -cat $output/part-r-00000
                         ;;
                     "Max-Min")
 						printf "input : "
 						read -r input
 						printf "output : "
 						read -r output
-                        echo "you chose choice $input $output"
+						echo ""
+						hdfs dfs -rm -R $output
+                        hadoop jar $JAR MapReduceMaxmin $input $output
+						hdfs dfs -cat $output/part-r-00000
                         ;;
                     "Range")
 						printf "input : "
 						read -r input
 						printf "output : "
-						read -r output					
-                        echo "you chose choice $input $output"
+						read -r output	
+						echo ""
+						hdfs dfs -rm -R $output				
+                        hadoop jar $JAR MapReduceRange $input $output
+						hdfs dfs -cat $output/part-r-00000
+
                         ;;
                     "Spread")
 						printf "input : "
 						read -r input
 						printf "output : "
-						read -r output					
-                        echo "you chose choice $input $output"
+						read -r output		
+						echo ""
+						hdfs dfs -rm -R $output			
+                        hadoop jar $JAR MapReduceSpread $input $output
+						hdfs dfs -cat $output/part-r-00000
+
                         ;;
                     "Sum")
 						printf "input : "
 						read -r input
 						printf "output : "
-						read -r output					
-                        echo "you chose choice $input $output"
+						read -r output				
+						echo ""
+						hdfs dfs -rm -R $output	
+                        hadoop jar $JAR MapReduceSum $input $output
+						hdfs dfs -cat $output/part-r-00000
+
                         ;;
                     "Quit")
 						echo "---------------------"
